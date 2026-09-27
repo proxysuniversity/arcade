@@ -1,1961 +1,1150 @@
-<html>
-        <head><title>Downloaded HTML</title></head>
-        <body>
-            <pre style="white-space: pre-wrap; word-wrap: break-word;"><!DOCTYPE html>
+<!DOCTYPE html>
+
 <html lang="en">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Notflix</title>
+<title>Proxy University Games</title>
+
+<link rel="icon" href="https://proxysuniversity.github.io/gamesarewattt.png">
 
 <style>
-:root{
-  --bg:#141414;
-  --panel:#181818;
-  --text:#fff;
-  --muted:#b3b3b3;
-  --red:#e50914;
-}
 
-*{
-  box-sizing:border-box;
+* {
+    box-sizing: border-box;
 }
 
-html{
-  scroll-behavior:smooth;
+html,
+body {
+    margin: 0;
+    padding: 0;
+    background: #000;
+    color: #fff;
+    font-family: Arial, Helvetica, sans-serif;
 }
 
-body{
-  margin:0;
-  background:var(--bg);
-  color:var(--text);
-  font-family:Arial,Helvetica,sans-serif;
-  overflow-x:hidden;
+body {
+    min-height: 100vh;
 }
 
-button,
-input{
-  font:inherit;
-}
 
-button{
-  color:inherit;
-}
+/* =========================================================
+   HEADER
+========================================================= */
 
-/* =========================
-   NAVIGATION
-========================= */
-
-.nav{
-  position:fixed;
-  inset:0 0 auto 0;
-  height:68px;
-  z-index:100;
-  display:flex;
-  align-items:center;
-  padding:0 4%;
-  gap:28px;
-  background:linear-gradient(
-    180deg,
-    rgba(0,0,0,.95),
-    rgba(0,0,0,.55),
-    transparent
-  );
-  transition:background .2s;
-}
+header {
+    width: 100%;
+    min-height: 104px;
 
-.nav.scrolled{
-  background:#141414;
-}
+    border-bottom: 1px solid #222;
 
-.logo-link{
-  display:flex;
-  align-items:center;
-  text-decoration:none;
-}
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
 
-.logo{
-  width:82px;
-  height:58px;
-  object-fit:contain;
-  border-radius:6px;
-  flex:0 0 auto;
-}
+    padding: 20px 25px;
 
-.navlinks{
-  display:flex;
-  align-items:center;
-  gap:22px;
-  flex:1;
+    background: #000;
 }
 
-.navlinks button{
-  background:none;
-  border:0;
-  padding:7px 0;
-  color:#e5e5e5;
-  font-size:14px;
-  cursor:pointer;
+.header-left {
+    display: flex;
+    align-items: center;
 }
 
-.navlinks button:hover,
-.navlinks button.active{
-  color:#fff;
+.header-logo {
+    width: 300px;
+    max-width: 45vw;
+    height: auto;
+    display: block;
 }
 
-.nav-right{
-  display:flex;
-  align-items:center;
-  gap:18px;
-}
 
-.search-wrap{
-  display:flex;
-  align-items:center;
-  gap:8px;
-}
+/* =========================================================
+   RIGHT SIDE OF HEADER
+========================================================= */
 
-.search-btn{
-  border:0;
-  background:none;
-  font-size:27px;
-  line-height:1;
-  cursor:pointer;
+.header-right {
+    display: flex;
+    align-items: center;
+    gap: 10px;
 }
 
-#searchBox{
-  width:0;
-  opacity:0;
-  border:1px solid #777;
-  background:#111;
-  color:#fff;
-  outline:none;
-  padding:0;
-  transition:.2s;
+.announcement-area {
+    text-align: right;
+    margin-right: 10px;
+    min-width: 250px;
 }
 
-#searchBox.open{
-  width:190px;
-  opacity:1;
-  padding:8px 10px;
+.announcement-title {
+    font-size: 18px;
+    font-weight: bold;
 }
 
-.profile{
-  width:31px;
-  height:31px;
-  border-radius:4px;
-  background:#333;
-  display:grid;
-  place-items:center;
-  font-weight:bold;
-  font-size:13px;
+.announcement-message {
+    font-size: 16px;
+    margin-top: 4px;
 }
 
-/* =========================
-   HERO
-========================= */
-
-.hero{
-  min-height:720px;
-  position:relative;
-  display:flex;
-  align-items:flex-end;
-  overflow:hidden;
-
-  background:
-    linear-gradient(
-      90deg,
-      #141414 0%,
-      rgba(20,20,20,.82) 22%,
-      rgba(20,20,20,.28) 58%,
-      rgba(20,20,20,.7) 100%
-    ),
-    linear-gradient(
-      0deg,
-      #141414 0%,
-      rgba(20,20,20,.15) 42%,
-      rgba(20,20,20,.08) 100%
-    ),
-    url("https://image.tmdb.org/t/p/original/qQ87fVgIsyCpEKdBI6RFWbBZxTJ.jpg")
-    center/cover no-repeat;
-}
+.header-button {
+    background: #000;
+    color: #fff;
 
-.hero::after{
-  content:"";
-  position:absolute;
-  inset:0;
-  background:linear-gradient(
-    0deg,
-    #141414 0%,
-    transparent 28%
-  );
-  pointer-events:none;
-}
+    border: 1px solid #fff;
 
-.hero-content{
-  position:relative;
-  z-index:2;
-  width:min(620px,70%);
-  padding:0 0 90px 5%;
-}
+    padding: 11px 16px;
 
-.kicker{
-  font-size:14px;
-  font-weight:bold;
-  letter-spacing:2px;
-  margin-bottom:12px;
-}
+    font-size: 14px;
+    font-weight: bold;
 
-.hero h1{
-  font-size:clamp(42px,6vw,78px);
-  line-height:.98;
-  margin:0 0 18px;
-  letter-spacing:-2px;
+    cursor: pointer;
 }
 
-.hero-meta{
-  color:#ddd;
-  font-size:15px;
-  margin-bottom:15px;
+.header-button:hover {
+    background: #fff;
+    color: #000;
 }
 
-.hero-desc{
-  color:#ddd;
-  line-height:1.5;
-  font-size:16px;
-  max-width:570px;
-  margin:0 0 22px;
-}
 
-/* =========================
-   BUTTONS
-========================= */
+/* =========================================================
+   MAIN CONTENT
+========================================================= */
 
-.actions{
-  display:flex;
-  gap:10px;
-}
+#site {
+    width: 100%;
+    max-width: 1100px;
 
-.action{
-  border:0;
-  border-radius:4px;
-  padding:12px 22px;
-  font-weight:bold;
-  cursor:pointer;
-  display:flex;
-  align-items:center;
-  gap:9px;
-}
+    margin: 0 auto;
 
-.play{
-  background:#fff;
-  color:#000;
+    padding: 25px;
 }
 
-.more{
-  background:rgba(109,109,110,.7);
-  color:#fff;
-}
 
-.action:hover{
-  filter:brightness(.9);
-}
+/* =========================================================
+   PAGE TITLE
+========================================================= */
 
-/* =========================
-   CONTENT
-========================= */
-
-.content{
-  position:relative;
-  z-index:3;
-  margin-top:-35px;
-}
+.page-title {
+    font-size: 27px;
+    font-weight: bold;
 
-.row{
-  padding:0 4% 38px;
+    margin-bottom: 6px;
 }
 
-.row-title{
-  display:flex;
-  justify-content:space-between;
-  align-items:end;
-  margin:0 0 14px;
-}
+.page-description {
+    font-size: 14px;
+    opacity: 0.7;
 
-.row h2{
-  margin:0;
-  font-size:22px;
+    margin-bottom: 25px;
 }
 
-.row-link{
-  color:#aaa;
-  font-size:12px;
-}
 
-/* =========================
-   CAROUSEL
-========================= */
-
-.carousel{
-  display:flex;
-  gap:10px;
-  overflow-x:auto;
-  overflow-y:visible;
-  padding:6px 0 16px;
-  scrollbar-width:none;
-}
+/* =========================================================
+   GAME
+========================================================= */
 
-.carousel::-webkit-scrollbar{
-  display:none;
-}
+.game {
+    width: 100%;
 
-.card{
-  position:relative;
-  flex:0 0 calc((100% - 40px)/5);
-  aspect-ratio:16/9;
-  border-radius:4px;
-  overflow:hidden;
-  background:#222;
-  cursor:pointer;
-  transition:
-    transform .25s,
-    box-shadow .25s;
-  outline:none;
-}
+    padding: 16px 0 25px 0;
 
-.card.portrait{
-  aspect-ratio:2/3;
-}
+    margin-bottom: 2px;
 
-.card:hover,
-.card:focus-visible{
-  transform:scale(1.08);
-  z-index:10;
-  box-shadow:0 8px 28px rgba(0,0,0,.65);
+    cursor: pointer;
 }
 
-.card img{
-  width:100%;
-  height:100%;
-  object-fit:cover;
-  display:block;
-  background:#222;
+.game:hover {
+    opacity: 0.82;
 }
 
-.card::after{
-  content:"";
-  position:absolute;
-  inset:45% 0 0;
-  background:linear-gradient(
-    transparent,
-    rgba(0,0,0,.9)
-  );
-}
 
-.card-info{
-  position:absolute;
-  left:11px;
-  right:11px;
-  bottom:10px;
-  z-index:2;
-  opacity:0;
-  transform:translateY(5px);
-  transition:.2s;
-}
+/* =========================================================
+   GAME IMAGE
+========================================================= */
 
-.card:hover .card-info,
-.card:focus-visible .card-info{
-  opacity:1;
-  transform:none;
-}
+.game-image {
+    display: block;
 
-.card-title{
-  font-size:13px;
-  font-weight:bold;
-  margin-bottom:4px;
-}
+    max-width: 100%;
+    max-height: 220px;
 
-.card-meta{
-  font-size:11px;
-  color:#ddd;
+    width: auto;
+    height: auto;
+
+    margin-bottom: 10px;
 }
 
-/* =========================
-   CONTINUE WATCHING
-========================= */
 
-.continue .card{
-  flex-basis:calc((100% - 30px)/4);
-}
+/* =========================================================
+   GAME NAME
+========================================================= */
 
-.continue .card::before{
-  content:"";
-  position:absolute;
-  left:0;
-  right:0;
-  bottom:0;
-  height:4px;
-  background:var(--red);
-  z-index:5;
-}
+.game-name {
+    font-size: 21px;
+    font-weight: normal;
 
-/* fake progress bars */
-.continue .card:nth-child(1)::after{
-  background:
-    linear-gradient(
-      transparent 55%,
-      rgba(0,0,0,.9)
-    );
+    margin-bottom: 7px;
 }
 
-.progress{
-  position:absolute;
-  left:0;
-  bottom:0;
-  height:4px;
-  background:#777;
-  z-index:6;
-}
 
-/* =========================
-   POSTERS
-========================= */
+/* =========================================================
+   GAME LINK
+========================================================= */
 
-.poster .card{
-  flex-basis:calc((100% - 50px)/6);
-}
+.game-link {
+    font-size: 16px;
 
-.poster .card img{
-  object-fit:cover;
-}
+    color: #fff;
 
-.poster .card::after{
-  inset:55% 0 0;
-}
+    text-decoration: underline;
 
-.poster .card-info{
-  opacity:1;
-  transform:none;
-}
+    margin-bottom: 7px;
 
-.poster .card-title{
-  font-size:14px;
+    word-break: break-all;
 }
 
-/* =========================
-   SEARCH
-========================= */
-
-.search-results{
-  display:none;
-  min-height:75vh;
-  padding:110px 4% 50px;
+.game-link::before {
+    content: "proxy link: ";
+    text-decoration: none;
+    display: inline-block;
 }
 
-.search-results.show{
-  display:block;
-}
 
-.search-results h2{
-  margin:0 0 18px;
-}
+/* =========================================================
+   GAME FILE
+========================================================= */
 
-.empty{
-  color:#888;
-  padding:30px 0;
-}
+.game-file {
+    font-size: 14px;
 
-/* =========================
-   DETAILS
-========================= */
-
-.details{
-  display:none;
-  min-height:100vh;
-  padding:105px 5% 60px;
-  background:#141414;
-}
+    opacity: 0.75;
 
-.details.show{
-  display:block;
-}
+    margin-bottom: 7px;
 
-.back{
-  background:none;
-  border:0;
-  color:#fff;
-  font-size:15px;
-  cursor:pointer;
-  padding:0;
-  margin-bottom:30px;
+    word-break: break-all;
 }
 
-.detail-grid{
-  display:grid;
-  grid-template-columns:280px 1fr;
-  gap:40px;
-  align-items:start;
+.game-file::before {
+    content: "game file: ";
 }
 
-.detail-poster{
-  width:100%;
-  border-radius:4px;
-  background:#222;
-  display:block;
-}
 
-.detail h1{
-  font-size:48px;
-  margin:0 0 12px;
-}
+/* =========================================================
+   GAME DESCRIPTION
+========================================================= */
 
-.detail-meta{
-  color:#ddd;
-  margin-bottom:18px;
-}
+.game-description {
+    font-size: 17px;
 
-.detail p{
-  max-width:700px;
-  color:#ccc;
-  line-height:1.6;
-}
+    line-height: 1.4;
 
-.detail-actions{
-  margin-top:24px;
+    margin-top: 4px;
 }
 
-/* =========================
-   PLAYER
-========================= */
-
-.player{
-  display:none;
-  min-height:100vh;
-  padding:95px 4% 50px;
-  background:#000;
-}
 
-.player.show{
-  display:block;
-}
+/* =========================================================
+   NO GAMES
+========================================================= */
 
-.player h2{
-  margin:0 0 18px;
-  font-size:24px;
-}
+#emptyMessage {
+    display: none;
 
-.player iframe{
-  width:100%;
-  height:75vh;
-  min-height:500px;
-  border:0;
-  border-radius:6px;
-  background:#111;
-  display:block;
-}
+    font-size: 16px;
 
-/* =========================
-   FOOTER
-========================= */
-
-footer{
-  color:#777;
-  text-align:center;
-  padding:25px 0 45px;
-  font-size:12px;
-}
+    opacity: 0.6;
 
-.creator-credit{
-  margin-top:8px;
-  color:#888;
+    padding: 20px 0;
 }
 
-.creator-credit a{
-  color:#aaa;
-  text-decoration:none;
-  margin-left:3px;
-}
+
+/* =========================================================
+   BOTTOM
+========================================================= */
+
+.bottom-info {
+    border-top: 1px solid #222;
+
+    margin-top: 25px;
 
-.creator-credit a:hover{
-  color:#fff;
-  text-decoration:underline;
+    padding-top: 18px;
+
+    font-size: 13px;
+
+    line-height: 1.5;
+
+    opacity: 0.55;
 }
+
 
-/* =========================
+/* =========================================================
    MOBILE
-========================= */
+========================================================= */
 
-@media(max-width:1000px){
+@media (max-width: 700px) {
 
-  .card{
-    flex-basis:calc((100% - 30px)/4);
-  }
+    header {
+        align-items: flex-start;
 
-  .poster .card{
-    flex-basis:calc((100% - 40px)/5);
-  }
+        flex-direction: column;
 
-  .hero{
-    min-height:650px;
-  }
+        gap: 18px;
 
+        padding: 18px;
+    }
+
+    .header-logo {
+        width: 280px;
+        max-width: 90vw;
+    }
+
+    .header-right {
+        width: 100%;
+
+        justify-content: flex-start;
+
+        flex-wrap: wrap;
+    }
+
+    .announcement-area {
+        text-align: left;
+
+        min-width: 0;
+
+        width: 100%;
+
+        margin-right: 0;
+    }
+
+    #site {
+        padding: 20px 18px 35px;
+    }
+
+    .game-image {
+        max-width: 100%;
+    }
 }
 
-@media(max-width:700px){
-
-  .nav{
-    height:60px;
-    padding:0 18px;
-    gap:15px;
-  }
-
-  .logo{
-    width:64px;
-    height:48px;
-  }
-
-  .navlinks{
-    gap:13px;
-    overflow:auto;
-  }
-
-  .navlinks button{
-    font-size:12px;
-    white-space:nowrap;
-  }
-
-  .profile{
-    display:none;
-  }
-
-  .hero{
-    min-height:600px;
-  }
-
-  .hero-content{
-    width:92%;
-    padding:0 0 65px 5%;
-  }
-
-  .hero h1{
-    font-size:45px;
-  }
-
-  .hero-desc{
-    font-size:14px;
-  }
-
-  .card{
-    flex-basis:68%;
-  }
-
-  .continue .card{
-    flex-basis:78%;
-  }
-
-  .poster .card{
-    flex-basis:42%;
-  }
-
-  .detail-grid{
-    grid-template-columns:1fr;
-  }
-
-  .detail-poster{
-    max-width:260px;
-  }
-
-  .detail h1{
-    font-size:38px;
-  }
-
-  .player{
-    padding:85px 15px 30px;
-  }
-
-  .player iframe{
-    height:65vh;
-    min-height:350px;
-  }
-
-}
-
-/* =========================
-   SMALL PHONES
-========================= */
-
-@media(max-width:450px){
-
-  .hero h1{
-    font-size:38px;
-  }
-
-  .hero-meta{
-    font-size:13px;
-  }
-
-  .actions{
-    flex-wrap:wrap;
-  }
-
-  .action{
-    padding:11px 17px;
-  }
-
-  #searchBox.open{
-    position:absolute;
-    right:55px;
-    width:170px;
-  }
-
-}
 </style>
+
 </head>
 
 <body>
 
-<!-- =====================================================
-     NAVIGATION
-===================================================== -->
+<!-- =========================================================
+     HEADER
+========================================================= -->
 
-<header class="nav" id="nav">
+<header>
 
-  <a
-    class="logo-link"
-    href="https://github.com/ProxyUniversity/notflix/blob/e82678c868f13e54f027991def5951627a2f950b/dfcde55d2ed458e153c6a899c4b0539a.png"
-    target="_blank"
-    rel="noopener"
-  >
+```
+<div class="header-left">
+
     <img
-      class="logo"
-      src="https://raw.githubusercontent.com/ProxyUniversity/notflix/e82678c868f13e54f027991def5951627a2f950b/dfcde55d2ed458e153c6a899c4b0539a.png"
-      alt="Notflix"
+        class="header-logo"
+        src="https://proxysuniversity.github.io/gamesarewattt.png"
+        alt="Proxy's University Games"
     >
-  </a>
 
-  <nav class="navlinks">
+</div>
 
-    <button
-      class="active"
-      onclick="goHome()"
-    >
-      Home
-    </button>
 
-    <button
-      onclick="scrollToRow('continue')"
-    >
-      Shows
-    </button>
+<div class="header-right">
 
-    <button
-      onclick="scrollToRow('popular')"
-    >
-      Movies
-    </button>
+    <div
+        class="announcement-area"
+        id="announcementArea">
 
-  </nav>
+        <div
+            class="announcement-title"
+            id="announcementTitle">
+            ANNOUNCEMENT
+        </div>
 
-  <div class="nav-right">
-
-    <div class="search-wrap">
-
-      <button
-        class="search-btn"
-        onclick="toggleSearch()"
-        aria-label="Search"
-      >
-        ⌕
-      </button>
-
-      <input
-        id="searchBox"
-        type="search"
-        placeholder="Titles, genres..."
-        oninput="doSearch()"
-      >
+        <div
+            class="announcement-message"
+            id="announcementMessage">
+        </div>
 
     </div>
 
-    <div class="profile">
-      A
-    </div>
 
-  </div>
+    <button
+        class="header-button"
+        onclick="window.location.href='https://www.instagram.com/aaron_thecarter/'">
+        Support Me
+    </button>
+
+</div>
+```
 
 </header>
 
+<!-- =========================================================
+     MAIN
+========================================================= -->
 
-<!-- =====================================================
-     HERO
-===================================================== -->
+<div id="site">
 
-<section class="hero" id="hero">
+```
+<div class="page-title">
+    Proxy University Games
+</div>
 
-  <div class="hero-content">
+<div class="page-description">
+    Games available to play.
+</div>
 
-    <div class="kicker">
-      
-    </div>
 
-    <h1>
-      what is Notflix?
-    </h1>
+<div id="games"></div>
 
-    <p class="hero-desc">
-      Notflix is a ai generated Streaming Service created by Aaron The Carter where you can watch movies for free without any virus, click up ads, scam websites, and best of all..... no ad websites every time you click something. this website is 100% legit and safe. videos were added using google drive. all rights to these movies go to their respective owners
-    </p>
 
-    <div class="actions">
+<div id="emptyMessage">
+    No games have been added yet.
+</div>
 
-      <button
-        class="action play"
-        onclick="details('into')"
-      >
-        ▶ Play "Spider-man into the Spider-verse"
-      </button>
 
-      <button
-        class="action more"
-        onclick="details('into')"
-      >
-        ⓘ More Info on the movie
-      </button>
+<div class="bottom-info">
+    Proxy University Games — games hosted through Proxy University.
+</div>
+```
 
-    </div>
-
-  </div>
-
-</section>
-
-
-<!-- =====================================================
-     MAIN CONTENT
-===================================================== -->
-
-<main class="content" id="mainContent">
-
-
-  <!-- CONTINUE WATCHING -->
-
-  <section
-    class="row continue"
-    id="continue"
-  >
-
-    <div class="row-title">
-
-      <h2>
-        Continue Watching for You
-      </h2>
-
-      <span class="row-link">
-        See all
-      </span>
-
-    </div>
-
-    <div
-      class="carousel"
-      id="continueGrid"
-    ></div>
-
-  </section>
-
-
-  <!-- POPULAR -->
-
-  <section
-    class="row"
-    id="popular"
-  >
-
-    <div class="row-title">
-
-      <h2>
-        Popular on Notflix
-      </h2>
-
-      <span class="row-link">
-        See all
-      </span>
-
-    </div>
-
-    <div
-      class="carousel"
-      id="popularGrid"
-    ></div>
-
-  </section>
-
-
-  <!-- TOP PICKS -->
-
-  <section
-    class="row poster"
-    id="top"
-  >
-
-    <div class="row-title">
-
-      <h2>
-        Top Picks for You
-      </h2>
-
-      <span class="row-link">
-        See all
-      </span>
-
-    </div>
-
-    <div
-      class="carousel"
-      id="topGrid"
-    ></div>
-
-  </section>
-
-
-  <!-- MORE MOVIES -->
-
-  <section
-    class="row poster"
-    id="new"
-  >
-
-    <div class="row-title">
-
-      <h2>
-        More Movies
-      </h2>
-
-      <span class="row-link">
-        See all
-      </span>
-
-    </div>
-
-    <div
-      class="carousel"
-      id="moreGrid"
-    ></div>
-
-  </section>
-
-
-  <!-- FOOTER -->
-
-  <footer>
-
-    <div>
-      Notflix • personal movie interface
-    </div>
-
-    <div class="creator-credit">
-
-      created by Aaron The Carter
-
-      <a
-        href="https://www.youtube.com/@aaronthecarterreal"
-        target="_blank"
-        rel="noopener"
-      >
-        (support me)
-      </a>
-
-    </div>
-
-  </footer>
-
-</main>
-
-
-<!-- =====================================================
-     SEARCH RESULTS
-===================================================== -->
-
-<section
-  class="search-results"
-  id="results"
->
-
-  <button
-    class="back"
-    onclick="goHome()"
-  >
-    ← Back to Home
-  </button>
-
-  <h2>
-    Search Results
-  </h2>
-
-  <div
-    class="carousel poster"
-    id="resultsGrid"
-  ></div>
-
-</section>
-
-
-<!-- =====================================================
-     DETAILS PAGE
-===================================================== -->
-
-<section
-  class="details"
-  id="details"
->
-
-  <button
-    class="back"
-    onclick="goHome()"
-  >
-    ← Back
-  </button>
-
-  <div class="detail-grid">
-
-    <img
-      id="detailPoster"
-      class="detail-poster"
-      alt=""
-    >
-
-    <div class="detail">
-
-      <h1 id="detailTitle"></h1>
-
-      <div
-        id="detailMeta"
-        class="detail-meta"
-      ></div>
-
-      <p id="detailDesc"></p>
-
-      <p>
-        <b>Cast:</b>
-        <span id="detailCast"></span>
-      </p>
-
-      <div class="detail-actions">
-
-        <button
-          class="action play"
-          onclick="playCurrent()"
-        >
-          ▶ Play
-        </button>
-
-      </div>
-
-    </div>
-
-  </div>
-
-</section>
-
-
-<!-- =====================================================
-     VIDEO PLAYER
-===================================================== -->
-
-<section
-  class="player"
-  id="player"
->
-
-  <button
-    class="back"
-    onclick="closePlayer()"
-  >
-    ← Back
-  </button>
-
-  <h2 id="playerTitle"></h2>
-
-  <iframe
-    id="drive"
-    allow="autoplay; fullscreen"
-    allowfullscreen
-  ></iframe>
-
-</section>
-
+</div>
 
 <script>
 
 /* =========================================================
-   MOVIE DATABASE
-=========================================================
+   GAME SLOTS
 
-   HOW TO ADD A GOOGLE DRIVE MOVIE:
+   hide: true
+       Hides the game.
 
-   Change:
+   hide: false
+       Shows the game.
 
-   drive: ""
+   justImage: true
+       ONLY shows the image.
+       Name, description, link and file text disappear.
 
-   to:
+   justImage: false
+       Normal game layout.
 
-   drive: "https://drive.google.com/file/d/YOUR_FILE_ID/view"
+   image:
+       Image URL.
 
-   You can also simply put:
+   link:
+       External website.
 
-   drive: "YOUR_FILE_ID"
+   file:
+       HTML file in THIS SAME GITHUB REPOSITORY.
 
+   If both link and file exist:
+       LINK WINS.
+
+   If image is empty:
+       No broken image is shown.
 ========================================================= */
 
-const movies = [
 
-  {
-    id:"bad",
-
-    title:"The Bad Guys 2",
-
-    year:"2025",
-
-    genre:"Animation • Comedy • Family",
-
-    rating:"PG",
-
-    poster:
-      "https://image.tmdb.org/t/p/original/rkdMYvN2NyIuvt3dQnB6g2QSgMC.jpg",
-
-    desc:
-      "The Bad Guys are back for another animated adventure.",
-
-    cast:
-      "Sam Rockwell • Marc Maron • Craig Robinson • Anthony Ramos • Awkwafina",
-
-    drive:"https://drive.google.com/file/d/1iATPN93b6A_UAmG_S5lDs6mUgKyEpO7a/view?usp=sharing"
-  },
-
-
-  {
-    id:"sp3",
-
-    title:"Spider-man 3",
-
-    year:"2007",
-
-    genre:"Action • Adventure • Superhero",
-
-    rating:"PG-13",
-
-    poster:
-      "https://m.media-amazon.com/images/I/A10tF8xUYGL._AC_UF894,1000_QL80_.jpg",
-
-    desc:
-      "Spiderman goes on an adventure to stop venom (note from notflix: the video may be still processing for playback. if it is, try again later.)",
-
-    cast:
-      "Tobey Maguire",
-
-    drive:"https://drive.google.com/file/d/1t5FsxLUPn0EMXec1WHuIjA5_fWmHyNPD/view?usp=sharing"
-  },
-
-
-  {
-    id:"sonic2",
-
-    title:"Sonic the Hedgehog 2",
-
-    year:"2022",
-
-    genre:"Action • Adventure • Comedy",
-
-    rating:"PG",
-
-    poster:
-      "https://i.ebayimg.com/00/s/MTYwMFgxMDY2/z/a~8AAOSwNTtkb1hM/$_57.JPG?set_id=8800005007",
-
-    desc:
-      "Sonic teams up with Tails and faces Dr. Robotnik and Knuckles. (note from notflix: i don't know why the movie was cut off and is 18 minutes long. i'm am very sorry and will get a new version soon.)",
-
-    cast:
-      "Ben Schwartz • James Marsden • Jim Carrey • Idris Elba",
-
-    drive:"https://drive.google.com/file/d/1Vbe70N53rOZfYlm140cMttJw28HS31lj/view?usp=sharing"
-  },
-
-
-  {
-    id:"fnaf2",
-
-    title:"Five Nights at Freddy's 2",
-
-    year:"2025",
-
-    genre:"Horror • Mystery",
-
-    rating:"PG-13",
-
-    poster:
-      "https://images.fandango.com/ImageRenderer/820/0/redesign/static/img/default_poster.png/0/images/masterrepository/fandango/240146/fivenightsandfreddys2.jpg",
-
-    desc:
-      "A new chapter of the Five Nights at Freddy's story.",
-
-    cast:
-      "Josh Hutcherson • Elizabeth Lail • Piper Rubio • Matthew Lillard",
-
-    drive:"https://drive.google.com/file/d/1uZotmtrcmvkhJ8JnD0HPmB4Fnty9xEue/view?usp=sharing"
-  },
-
-
-  {
-    id:"into",
-
-    title:"Spider-Man: Into the Spider-Verse",
-
-    year:"2018",
-
-    genre:"Animation • Action • Superhero",
-
-    rating:"PG",
-
-    /*
-      Poster artwork
-    */
-
-    poster:
-      "https://i.ebayimg.com/00/s/MTYwMFgxMDY2/z/Eb8AAOSw-W5lWWFp/$_57.JPG?set_id=880000500F",
-
-    desc:
-      "Miles Morales discovers that there is more than one Spider-Man.",
-
-    cast:
-      "Shameik Moore • Hailee Steinfeld • Jake Johnson • Mahershala Ali",
-
-    drive:""
-  },
-
-
-  {
-    id:"across",
-
-    title:"Spider-Man: Across the Spider-Verse",
-
-    year:"2023",
-
-    genre:"Animation • Action • Superhero",
-
-    rating:"PG",
-
-    poster:
-      "https://i.ebayimg.com/images/g/3ogAAOSwZmBlWlTn/s-l400.jpg",
-
-    desc:
-      "Miles Morales is pulled across the multiverse and encounters the Spider Society.",
-
-    cast:
-      "Shameik Moore • Hailee Steinfeld • Brian Tyree Henry • Jake Johnson",
-
-    drive:""
-  },
-
-
-  {
-    id:"black",
-
-    title:"Black Panther",
-
-    year:"2018",
-
-    genre:"Action • Adventure • Superhero",
-
-    rating:"PG-13",
-
-    poster:
-      "https://lumiere-a.akamaihd.net/v1/images/p_blackpanther_19754_4ac13f07.jpeg?region=0%2C0%2C540%2C810",
-
-    desc:
-      "T'Challa returns home to Wakanda to take his place as king.",
-
-    cast:
-      "Chadwick Boseman • Michael B. Jordan • Lupita Nyong'o • Danai Gurira",
-
-    drive:""
-  },
-
-
-  {
-    id:"lego",
-
-    title:"The LEGO Movie",
-
-    year:"2014",
-
-    genre:"Animation • Comedy • Adventure",
-
-    rating:"PG",
-
-    poster:
-      "https://i.ebayimg.com/images/g/3FwAAOSwXYFjgDP-/s-l400.jpg",
-
-    desc:
-      "An ordinary LEGO minifigure is chosen to help save the LEGO universe.",
-
-    cast:
-      "Chris Pratt • Will Ferrell • Elizabeth Banks • Will Arnett",
-
-    drive:"https://drive.google.com/file/d/1L5Re9gLzbLzHB69ubE0vFAO93v4Bt43J/view?usp=sharing"
-  }
+const games = [
+
+    /* =========================
+       GAME 1
+    ========================= */
+
+    {
+        name: "",
+        image: "",
+        link: "",
+        file: "",
+        description: "",
+        hide: true,
+        justImage: false
+    },
+
+
+    /* =========================
+       GAME 2
+    ========================= */
+
+    {
+        name: "",
+        image: "",
+        link: "",
+        file: "",
+        description: "",
+        hide: true,
+        justImage: false
+    },
+
+
+    /* =========================
+       GAME 3
+    ========================= */
+
+    {
+        name: "",
+        image: "",
+        link: "",
+        file: "",
+        description: "",
+        hide: true,
+        justImage: false
+    },
+
+
+    /* =========================
+       GAME 4
+    ========================= */
+
+    {
+        name: "",
+        image: "",
+        link: "",
+        file: "",
+        description: "",
+        hide: true,
+        justImage: false
+    },
+
+
+    /* =========================
+       GAME 5
+    ========================= */
+
+    {
+        name: "",
+        image: "",
+        link: "",
+        file: "",
+        description: "",
+        hide: true,
+        justImage: false
+    },
+
+
+    /* =========================
+       GAME 6
+    ========================= */
+
+    {
+        name: "",
+        image: "",
+        link: "",
+        file: "",
+        description: "",
+        hide: true,
+        justImage: false
+    },
+
+
+    /* =========================
+       GAME 7
+    ========================= */
+
+    {
+        name: "",
+        image: "",
+        link: "",
+        file: "",
+        description: "",
+        hide: true,
+        justImage: false
+    },
+
+
+    /* =========================
+       GAME 8
+    ========================= */
+
+    {
+        name: "",
+        image: "",
+        link: "",
+        file: "",
+        description: "",
+        hide: true,
+        justImage: false
+    },
+
+
+    /* =========================
+       GAME 9
+    ========================= */
+
+    {
+        name: "",
+        image: "",
+        link: "",
+        file: "",
+        description: "",
+        hide: true,
+        justImage: false
+    },
+
+
+    /* =========================
+       GAME 10
+    ========================= */
+
+    {
+        name: "",
+        image: "",
+        link: "",
+        file: "",
+        description: "",
+        hide: true,
+        justImage: false
+    },
+
+
+    /* =========================
+       GAME 11
+    ========================= */
+
+    {
+        name: "",
+        image: "",
+        link: "",
+        file: "",
+        description: "",
+        hide: true,
+        justImage: false
+    },
+
+
+    /* =========================
+       GAME 12
+    ========================= */
+
+    {
+        name: "",
+        image: "",
+        link: "",
+        file: "",
+        description: "",
+        hide: true,
+        justImage: false
+    },
+
+
+    /* =========================
+       GAME 13
+    ========================= */
+
+    {
+        name: "",
+        image: "",
+        link: "",
+        file: "",
+        description: "",
+        hide: true,
+        justImage: false
+    },
+
+
+    /* =========================
+       GAME 14
+    ========================= */
+
+    {
+        name: "",
+        image: "",
+        link: "",
+        file: "",
+        description: "",
+        hide: true,
+        justImage: false
+    },
+
+
+    /* =========================
+       GAME 15
+    ========================= */
+
+    {
+        name: "",
+        image: "",
+        link: "",
+        file: "",
+        description: "",
+        hide: true,
+        justImage: false
+    },
+
+
+    /* =========================
+       GAME 16
+    ========================= */
+
+    {
+        name: "",
+        image: "",
+        link: "",
+        file: "",
+        description: "",
+        hide: true,
+        justImage: false
+    },
+
+
+    /* =========================
+       GAME 17
+    ========================= */
+
+    {
+        name: "",
+        image: "",
+        link: "",
+        file: "",
+        description: "",
+        hide: true,
+        justImage: false
+    },
+
+
+    /* =========================
+       GAME 18
+    ========================= */
+
+    {
+        name: "",
+        image: "",
+        link: "",
+        file: "",
+        description: "",
+        hide: true,
+        justImage: false
+    },
+
+
+    /* =========================
+       GAME 19
+    ========================= */
+
+    {
+        name: "",
+        image: "",
+        link: "",
+        file: "",
+        description: "",
+        hide: true,
+        justImage: false
+    },
+
+
+    /* =========================
+       GAME 20
+    ========================= */
+
+    {
+        name: "",
+        image: "",
+        link: "",
+        file: "",
+        description: "",
+        hide: true,
+        justImage: false
+    },
+
+
+    /* =========================
+       GAME 21
+    ========================= */
+
+    {
+        name: "",
+        image: "",
+        link: "",
+        file: "",
+        description: "",
+        hide: true,
+        justImage: false
+    },
+
+
+    /* =========================
+       GAME 22
+    ========================= */
+
+    {
+        name: "",
+        image: "",
+        link: "",
+        file: "",
+        description: "",
+        hide: true,
+        justImage: false
+    },
+
+
+    /* =========================
+       GAME 23
+    ========================= */
+
+    {
+        name: "",
+        image: "",
+        link: "",
+        file: "",
+        description: "",
+        hide: true,
+        justImage: false
+    },
+
+
+    /* =========================
+       GAME 24
+    ========================= */
+
+    {
+        name: "",
+        image: "",
+        link: "",
+        file: "",
+        description: "",
+        hide: true,
+        justImage: false
+    },
+
+
+    /* =========================
+       GAME 25
+    ========================= */
+
+    {
+        name: "",
+        image: "",
+        link: "",
+        file: "",
+        description: "",
+        hide: true,
+        justImage: false
+    }
 
 ];
 
 
-/* =========================================================
-   CURRENT MOVIE
-========================================================= */
-
-let current = null;
-
 
 /* =========================================================
-   FALLBACK POSTER
+   RANDOM ANNOUNCEMENT
 ========================================================= */
 
-const fallbackPoster =
-  "https://placehold.co/780x1170/181818/ffffff?text=Notflix";
+const announcements = [
 
+    "Legitimate games for you're Chromebook!",
+    "I picked 7+ real games that you can choose from.",
+    "these games also save data!"
 
-/* =========================================================
-   GET POSTER
-========================================================= */
+];
 
-function img(movie){
+const randomAnnouncement =
+    announcements[
+        Math.floor(
+            Math.random() * announcements.length
+        )
+    ];
 
-  return movie.poster || fallbackPoster;
-
-}
-
-
-/* =========================================================
-   CREATE CARD
-========================================================= */
-
-function makeCard(movie,portrait=false){
-
-  const card =
-    document.createElement("article");
-
-  card.className =
-    "card" +
-    (portrait ? " portrait" : "");
-
-  card.tabIndex = 0;
-
-  card.dataset.id = movie.id;
-
-  card.innerHTML = `
-
-    <img
-      src="${img(movie)}"
-      alt="${movie.title}"
-      loading="lazy"
-    >
-
-    <div class="card-info">
-
-      <div class="card-title">
-        ${movie.title}
-      </div>
-
-      <div class="card-meta">
-        ${movie.year} • ${movie.rating}
-      </div>
-
-    </div>
-
-  `;
-
-
-  const image =
-    card.querySelector("img");
-
-
-  image.onerror = function(){
-
-    this.onerror = null;
-
-    this.src = fallbackPoster;
-
-  };
-
-
-  card.onclick =
-    () => details(movie.id);
-
-
-  card.onkeydown =
-    event => {
-
-      if(
-        event.key === "Enter" ||
-        event.key === " "
-      ){
-
-        event.preventDefault();
-
-        details(movie.id);
-
-      }
-
-    };
-
-
-  return card;
-}
-
-
-/* =========================================================
-   RENDER
-========================================================= */
-
-function render(id,list,portrait=false){
-
-  const grid =
-    document.getElementById(id);
-
-  if(!grid) return;
-
-  grid.innerHTML = "";
-
-
-  if(!list.length){
-
-    grid.innerHTML = `
-      <div class="empty">
-        No titles found.
-      </div>
-    `;
-
-    return;
-  }
-
-
-  list.forEach(movie => {
-
-    grid.appendChild(
-      makeCard(movie,portrait)
+const announcementMessage =
+    document.getElementById(
+        "announcementMessage"
     );
 
-  });
-
-}
-
-
-/* =========================================================
-   HOME ROWS
-========================================================= */
-
-render(
-  "continueGrid",
-  [
-    movies.find(m => m.id === "into"),
-    movies.find(m => m.id === "across"),
-    movies.find(m => m.id === "sonic"),
-    movies.find(m => m.id === "sonic2")
-  ].filter(Boolean)
-);
-
-
-render(
-  "popularGrid",
-  movies
-);
-
-
-render(
-  "topGrid",
-  [
-    movies.find(m => m.id === "bad"),
-    movies.find(m => m.id === "black"),
-    movies.find(m => m.id === "fnaf2"),
-    movies.find(m => m.id === "into"),
-    movies.find(m => m.id === "across"),
-    movies.find(m => m.id === "lego")
-  ].filter(Boolean),
-  true
-);
-
-
-render(
-  "moreGrid",
-  [...movies].reverse(),
-  true
-);
-
-
-/* =========================================================
-   DETAILS
-========================================================= */
-
-function details(id){
-
-  current =
-    movies.find(
-      movie => movie.id === id
+const announcementArea =
+    document.getElementById(
+        "announcementArea"
     );
 
 
-  if(!current) return;
+/* =========================================================
+   HIDE ANNOUNCEMENT IF EMPTY
+========================================================= */
 
+if (randomAnnouncement.trim() === "") {
 
-  document
-    .getElementById("mainContent")
-    .style.display = "none";
+    announcementArea.style.display =
+        "none";
 
+} else {
 
-  document
-    .getElementById("hero")
-    .style.display = "none";
-
-
-  document
-    .getElementById("results")
-    .classList.remove("show");
-
-
-  document
-    .getElementById("player")
-    .classList.remove("show");
-
-
-  document
-    .getElementById("details")
-    .classList.add("show");
-
-
-  const detailPoster =
-    document.getElementById("detailPoster");
-
-
-  detailPoster.src =
-    img(current);
-
-
-  detailPoster.onerror =
-    function(){
-
-      this.onerror = null;
-
-      this.src = fallbackPoster;
-
-    };
-
-
-  document
-    .getElementById("detailTitle")
-    .textContent =
-      current.title;
-
-
-  document
-    .getElementById("detailMeta")
-    .textContent =
-      `${current.year} • ${current.genre} • ${current.rating}`;
-
-
-  document
-    .getElementById("detailDesc")
-    .textContent =
-      current.desc;
-
-
-  document
-    .getElementById("detailCast")
-    .textContent =
-      current.cast;
-
-
-  scrollTo(0,0);
+    announcementMessage.textContent =
+        randomAnnouncement;
 
 }
 
 
-/* =========================================================
-   GOOGLE DRIVE ID
-========================================================= */
-
-function getDriveId(value){
-
-  if(!value) return "";
-
-  value = value.trim();
-
-
-  /*
-    Full Google Drive URL:
-
-    https://drive.google.com/file/d/FILE_ID/view
-  */
-
-  let match =
-    value.match(
-      /\/file\/d\/([^/]+)/i
-    );
-
-
-  if(match){
-
-    return match[1];
-
-  }
-
-
-  /*
-    Google Drive URL with ?id=
-  */
-
-  match =
-    value.match(
-      /[?&]id=([^&]+)/i
-    );
-
-
-  if(match){
-
-    return match[1];
-
-  }
-
-
-  /*
-    Assume the value is already
-    the file ID.
-  */
-
-  if(
-    !value.includes("/") &&
-    !value.includes("?") &&
-    !value.includes("=")
-  ){
-
-    return value;
-
-  }
-
-
-  return "";
-
-}
-
 
 /* =========================================================
-   PLAY MOVIE
+   CREATE GAMES
 ========================================================= */
 
-function playCurrent(){
+const gamesContainer =
+    document.getElementById("games");
 
-  if(!current) return;
+const emptyMessage =
+    document.getElementById("emptyMessage");
 
-
-  const driveId =
-    getDriveId(current.drive);
-
-
-  if(!driveId){
-
-    alert(
-      `the movie "${current.title}"'s video has not been uploaded to this website yet.\n\n` +
-      `please come back soon.`
-    );
-
-    return;
-
-  }
+let visibleGames = 0;
 
 
-  document
-    .getElementById("details")
-    .classList.remove("show");
+games.forEach((game) => {
 
 
-  document
-    .getElementById("player")
-    .classList.add("show");
+    /* =====================================================
+       HIDE GAME
+    ===================================================== */
 
-
-  document
-    .getElementById("playerTitle")
-    .textContent =
-      current.title;
-
-
-  const player =
-    document.getElementById("drive");
-
-
-  player.src =
-    `https://drive.google.com/file/d/${driveId}/preview`;
-
-
-  scrollTo(0,0);
-
-}
-
-
-/* =========================================================
-   CLOSE PLAYER
-========================================================= */
-
-function closePlayer(){
-
-  const player =
-    document.getElementById("drive");
-
-  player.src = "";
-
-
-  document
-    .getElementById("player")
-    .classList.remove("show");
-
-
-  goHome();
-
-}
-
-
-/* =========================================================
-   HOME
-========================================================= */
-
-function goHome(){
-
-  document
-    .getElementById("details")
-    .classList.remove("show");
-
-
-  document
-    .getElementById("player")
-    .classList.remove("show");
-
-
-  document
-    .getElementById("results")
-    .classList.remove("show");
-
-
-  document
-    .getElementById("hero")
-    .style.display = "flex";
-
-
-  document
-    .getElementById("mainContent")
-    .style.display = "block";
-
-
-  scrollTo(0,0);
-
-}
-
-
-/* =========================================================
-   SCROLL TO ROW
-========================================================= */
-
-function scrollToRow(id){
-
-  goHome();
-
-
-  setTimeout(() => {
-
-    const element =
-      document.getElementById(id);
-
-
-    if(element){
-
-      element.scrollIntoView({
-        behavior:"smooth",
-        block:"start"
-      });
-
+    if (game.hide === true) {
+        return;
     }
 
-  },30);
 
-}
+    /* =====================================================
+       CHECK IF GAME HAS CONTENT
+    ===================================================== */
 
+    const hasContent =
 
-/* =========================================================
-   SEARCH TOGGLE
-========================================================= */
+        game.name.trim() !== "" ||
 
-function toggleSearch(){
+        game.image.trim() !== "" ||
 
-  const search =
-    document.getElementById("searchBox");
+        game.link.trim() !== "" ||
 
+        game.file.trim() !== "" ||
 
-  search.classList.toggle("open");
-
-
-  if(
-    search.classList.contains("open")
-  ){
-
-    search.focus();
-
-  }
-
-}
+        game.description.trim() !== "";
 
 
-/* =========================================================
-   SEARCH
-========================================================= */
-
-function doSearch(){
-
-  const query =
-    document
-      .getElementById("searchBox")
-      .value
-      .toLowerCase()
-      .trim();
+    if (!hasContent) {
+        return;
+    }
 
 
-  if(!query){
-
-    goHome();
-
-    return;
-
-  }
+    visibleGames++;
 
 
-  document
-    .getElementById("hero")
-    .style.display = "none";
+    /* =====================================================
+       GAME CONTAINER
+    ===================================================== */
+
+    const gameElement =
+        document.createElement("div");
+
+    gameElement.className =
+        "game";
 
 
-  document
-    .getElementById("mainContent")
-    .style.display = "none";
+    /* =====================================================
+       IMAGE
+    ===================================================== */
 
+    if (game.image.trim() !== "") {
 
-  document
-    .getElementById("details")
-    .classList.remove("show");
+        const image =
+            document.createElement("img");
 
+        image.className =
+            "game-image";
 
-  document
-    .getElementById("results")
-    .classList.add("show");
+        image.src =
+            game.image;
 
+        image.alt =
+            game.name || "Game";
 
-  const found =
-    movies.filter(movie => {
-
-      const searchable =
-        `${movie.title} ${movie.genre} ${movie.cast}`
-          .toLowerCase();
-
-
-      return searchable.includes(query);
-
-    });
-
-
-  render(
-    "resultsGrid",
-    found,
-    true
-  );
-
-
-  scrollTo(0,0);
-
-}
-
-
-/* =========================================================
-   NAV SCROLL
-========================================================= */
-
-window.addEventListener(
-  "scroll",
-  () => {
-
-    document
-      .getElementById("nav")
-      .classList.toggle(
-        "scrolled",
-        scrollY > 30
-      );
-
-  }
-);
-
-
-/* =========================================================
-   ESCAPE
-========================================================= */
-
-document.addEventListener(
-  "keydown",
-  event => {
-
-    if(event.key !== "Escape")
-      return;
-
-
-    const search =
-      document.getElementById("searchBox");
-
-
-    if(
-      search.classList.contains("open")
-    ){
-
-      search.classList.remove("open");
-
-      search.value = "";
-
-      return;
+        gameElement.appendChild(
+            image
+        );
 
     }
 
 
-    if(
+    /* =====================================================
+       JUST IMAGE MODE
+    ===================================================== */
 
-      document
-        .getElementById("details")
-        .classList.contains("show")
+    if (game.justImage === true) {
 
-      ||
+        if (game.image.trim() !== "") {
 
-      document
-        .getElementById("results")
-        .classList.contains("show")
+            gameElement.addEventListener(
+                "click",
+                () => {
 
-      ||
+                    openGame(game);
 
-      document
-        .getElementById("player")
-        .classList.contains("show")
+                }
+            );
 
-    ){
+        }
 
-      goHome();
+        gamesContainer.appendChild(
+            gameElement
+        );
+
+        return;
+    }
+
+
+    /* =====================================================
+       NORMAL GAME NAME
+    ===================================================== */
+
+    if (game.name.trim() !== "") {
+
+        const name =
+            document.createElement("div");
+
+        name.className =
+            "game-name";
+
+        name.textContent =
+            game.name;
+
+        gameElement.appendChild(
+            name
+        );
 
     }
 
-  }
-);
+
+    /* =====================================================
+       EXTERNAL LINK TEXT
+    ===================================================== */
+
+    if (game.link.trim() !== "") {
+
+        const link =
+            document.createElement("div");
+
+        link.className =
+            "game-link";
+
+        link.textContent =
+            game.link;
+
+        gameElement.appendChild(
+            link
+        );
+
+    }
+
+
+    /* =====================================================
+       HTML FILE TEXT
+    ===================================================== */
+
+    if (game.file.trim() !== "") {
+
+        const file =
+            document.createElement("div");
+
+        file.className =
+            "game-file";
+
+        file.textContent =
+            game.file;
+
+        gameElement.appendChild(
+            file
+        );
+
+    }
+
+
+    /* =====================================================
+       DESCRIPTION
+    ===================================================== */
+
+    if (game.description.trim() !== "") {
+
+        const description =
+            document.createElement("div");
+
+        description.className =
+            "game-description";
+
+        description.textContent =
+            game.description;
+
+        gameElement.appendChild(
+            description
+        );
+
+    }
+
+
+    /* =====================================================
+       CLICK GAME
+    ===================================================== */
+
+    gameElement.addEventListener(
+        "click",
+        () => {
+
+            openGame(game);
+
+        }
+    );
+
+
+    gamesContainer.appendChild(
+        gameElement
+    );
+
+});
+
+
+
+/* =========================================================
+   OPEN GAME
+========================================================= */
+
+function openGame(game) {
+
+
+    /* =====================================================
+       EXTERNAL LINK
+    ===================================================== */
+
+    if (game.link.trim() !== "") {
+
+        window.location.href =
+            game.link;
+
+        return;
+    }
+
+
+    /* =====================================================
+       LOCAL HTML FILE
+    ===================================================== */
+
+    if (game.file.trim() !== "") {
+
+        window.location.href =
+            "./" + game.file;
+
+        return;
+    }
+
+}
+
+
+
+/* =========================================================
+   EMPTY GAME LIST
+========================================================= */
+
+if (visibleGames === 0) {
+
+    emptyMessage.style.display =
+        "block";
+
+}
 
 </script>
 
 </body>
-</html></pre>
-        </body>
-    </html>
+</html>
