@@ -453,13 +453,13 @@ const games = [
     ========================= */
 
     {
-        name: "text",
-        image: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSvR28KS1guB5XqH5qiy6gANuWOfUI1xtCjZBebSAnw0Q&s",
+        name: "",
+        image: "",
         link: "",
-        file: "space-waves.html",
+        file: "",
         description: "",
-        hide: false,
-        justImage: true
+        hide: true,
+        justImage: false
     },
 
 
@@ -1105,15 +1105,21 @@ function openGame(game) {
 
 
     /* =====================================================
+       FIGURE OUT GAME URL
+    ===================================================== */
+
+    let gameURL = "";
+
+
+    /* =====================================================
        EXTERNAL LINK
     ===================================================== */
 
     if (game.link.trim() !== "") {
 
-        window.location.href =
+        gameURL =
             game.link;
 
-        return;
     }
 
 
@@ -1121,26 +1127,268 @@ function openGame(game) {
        LOCAL HTML FILE
     ===================================================== */
 
-    if (game.file.trim() !== "") {
+    else if (game.file.trim() !== "") {
 
-        window.location.href =
-            "./" + game.file;
+        gameURL =
+            new URL(
+                "./" + game.file,
+                window.location.href
+            ).href;
 
+    }
+
+
+    /* =====================================================
+       NO GAME
+    ===================================================== */
+
+    if (gameURL === "") {
         return;
     }
 
+
+    /* =====================================================
+       OPEN ABOUT:BLANK
+    ===================================================== */
+
+    const gameWindow =
+        window.open(
+            "about:blank",
+            "_blank"
+        );
+
+
+    /* =====================================================
+       POPUP BLOCKED
+    ===================================================== */
+
+    if (!gameWindow) {
+
+        window.location.href =
+            gameURL;
+
+        return;
+
+    }
+
+
+    /* =====================================================
+       GAME WINDOW HTML
+    ===================================================== */
+
+    gameWindow.document.open();
+
+    gameWindow.document.write(`
+<!DOCTYPE html>
+
+<html lang="en">
+
+<head>
+
+<meta charset="UTF-8">
+
+<meta
+    name="viewport"
+    content="width=device-width, initial-scale=1.0"
+>
+
+<title>Proxy University Game</title>
+
+<style>
+
+* {
+    box-sizing: border-box;
 }
 
+html,
+body {
 
+    margin: 0;
+    padding: 0;
+
+    width: 100%;
+    height: 100%;
+
+    background: #000;
+
+    overflow: hidden;
+
+}
+
+#gameFrame {
+
+    position: fixed;
+
+    top: 0;
+    left: 0;
+
+    width: 100%;
+    height: 100%;
+
+    border: 0;
+
+    background: #000;
+
+}
+
+#proxyLogo {
+
+    position: fixed;
+
+    top: 12px;
+    right: 12px;
+
+    width: 170px;
+    max-width: 30vw;
+
+    height: auto;
+
+    z-index: 999999;
+
+    cursor: pointer;
+
+    opacity: 0.9;
+
+    transition:
+        opacity 0.2s ease,
+        transform 0.2s ease;
+
+}
+
+#proxyLogo:hover {
+
+    opacity: 1;
+
+    transform: scale(1.03);
+
+}
+
+#backButton {
+
+    position: fixed;
+
+    top: 12px;
+    left: 12px;
+
+    z-index: 999999;
+
+    background: #000;
+
+    color: #fff;
+
+    border: 1px solid #fff;
+
+    padding: 10px 15px;
+
+    font-family: Arial, Helvetica, sans-serif;
+
+    font-size: 14px;
+
+    font-weight: bold;
+
+    cursor: pointer;
+
+    opacity: 0.9;
+
+}
+
+#backButton:hover {
+
+    background: #fff;
+
+    color: #000;
+
+}
+
+</style>
+
+</head>
+
+<body>
+
+<iframe
+    id="gameFrame"
+    src="${gameURL.replace(/"/g, "&quot;")}"
+    allow="fullscreen; autoplay"
+    allowfullscreen>
+</iframe>
+
+<img
+id="proxyLogo"
+src="https://proxysuniversity.github.io/gamesarewattt.png"
+alt="Proxy University Games"
+title="Back to Proxy University Games"
+
+>
+
+<button
+ id="backButton">
+BACK </button>
+
+<script>
+
+document
+    .getElementById("proxyLogo")
+    .addEventListener(
+        "click",
+        function() {
+
+            window.location.href =
+                "https://proxysuniversity.github.io/games";
+
+        }
+    );
+
+
+document
+    .getElementById("backButton")
+    .addEventListener(
+        "click",
+        function() {
+
+            window.location.href =
+                "https://proxysuniversity.github.io/games";
+
+        }
+    );
+
+
+/*
+    Keep the wrapper tab focused on the game.
+*/
+
+window.focus();
+
+</script>
+
+</body>
+
+</html>
+`);
+
+```
+gameWindow.document.close();
+
+
+/* =====================================================
+   FOCUS GAME
+===================================================== */
+
+gameWindow.focus();
+```
+
+}
 
 /* =========================================================
-   EMPTY GAME LIST
+EMPTY GAME LIST
 ========================================================= */
 
 if (visibleGames === 0) {
 
-    emptyMessage.style.display =
-        "block";
+```
+emptyMessage.style.display =
+    "block";
+```
 
 }
 
